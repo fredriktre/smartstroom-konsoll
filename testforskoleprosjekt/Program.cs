@@ -51,38 +51,38 @@ namespace SystemLibrary
         {
             Console.WriteLine("Do you want to add a new item? (n for no)");
             Console.WriteLine("==============================");
-            string answer = Convert.ToString(Console.ReadLine());
+            string answer = Convert.ToString(Console.ReadLine());                            
 
             if (answer != "n")
             {
-                threshold threshold = new threshold();
-                int genID = makeID();
-                Console.WriteLine($"At what threshold (percent over average price) do you want your system to turn off? ID = {genID}");
+                threshold threshold = new threshold(); // Kaller på threshold objekt.
+                int genID = makeID(); // Skaffer ID.
+                Console.WriteLine($"At what threshold (percent over average price) do you want your system to turn off? ID = {genID}"); // Spørsmål.
                 Console.WriteLine("==================================================================================================");
-                float chosenThreshold = Convert.ToInt32(Console.ReadLine());
-                chosenThreshold = chosenThreshold / 100;
-                threshold.id = genID;
-                threshold.pricethreshold = chosenThreshold;
-                thresholdlist.Add(threshold);
+                float chosenThreshold = Convert.ToInt32(Console.ReadLine()); // Spør om hva bruker ønsker som threshold.
+                chosenThreshold = chosenThreshold / 100; // Tilpass prosenten for senere matte.
+                threshold.id = genID; // Legg id til listen.
+                threshold.pricethreshold = chosenThreshold; // legg valgte thresholden til listen.
+                thresholdlist.Add(threshold); // Legg til threshold inn i threshold listen.
             }
 
-            Console.WriteLine("Another one?");
+            Console.WriteLine("Another one?"); // Spør om bruker vil legge til flere thresholds.
             Console.WriteLine("==============================");
-            answer = Convert.ToString(Console.ReadLine());
+            answer = Convert.ToString(Console.ReadLine()); // Spør om svar fra bruker.
 
-            if (answer != "n")
+            if (answer != "n") // Så lenge svaret til brukeren ikke er n,
             {
-                insertThreshold();
+                insertThreshold(); // Kaller seg selv. rekusjon.
             }
             else
             {
                 int a = thresholdlist.Count;
-                for (int i = 0; i < a; i++)
+                for (int i = 0; i < a; i++) // så lenge i er mindre enn mengden av mengden thresholds.
                 {
-                    string id = Convert.ToString(thresholdlist.ElementAt(i).id);
-                    string thresholdanswer = Convert.ToString(thresholdlist.ElementAt(i).pricethreshold * 100 + "%");
-                    string returned = id + " = " + thresholdanswer;
-                    Console.WriteLine(returned);
+                    string id = Convert.ToString(thresholdlist.ElementAt(i).id); // Hent id.                                                                                                                                    
+                    string thresholdanswer = Convert.ToString(thresholdlist.ElementAt(i).pricethreshold * 100 + "%"); // Hent threshold fra bruker.
+                    string returned = id + " = " + thresholdanswer; // Lager en string med informasjonen programmet skal vise deg etter valget av threshold.
+                    Console.WriteLine(returned); // Viser valget ditt av threshold.
                 }   
             }
         }
