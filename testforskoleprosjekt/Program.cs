@@ -1,57 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using testforskoleprosjekt;
+﻿using testforskoleprosjekt;
 
 namespace SystemLibrary
 {
     public class Program
     {
-        Random random = new Random();
-        public int[] todaysPrices = new int[24];
-        public int[] sortedPrices = new int[24];
-        public int currentHour = 0;
-        List<threshold> thresholdlist = new List<threshold>();
-        List<HourOff> hourofflist = new List<HourOff>();
-        public int getHour = 0; //wont work
+        Random random = new Random(); // Lager en ny referanse til random biblioteket for å kunne bruke det.
+        public int[] todaysPrices = new int[24]; // Lager en ny array med dagens priser.
+        public int[] sortedPrices = new int[24]; // Lager en ny array med sorterte priser.
+        public int currentHour = 0; // Deklarerer en variabel kalt currentHour.
+        List<threshold> thresholdlist = new List<threshold>(); // Lager en ny liste basert på objektet threshold.
+        List<HourOff> hourofflist = new List<HourOff>(); // Lager en ny liste basert på objektet HourOff.
 
         public static void Main(string[] args){
-            Program program = new Program();
+            Program program = new Program(); // Deklarerer seg selv for å kunne kalle på metoder.
 
-            string answer = Convert.ToString(Console.ReadLine());
-            if (answer != "ass")
+            string answer = Convert.ToString(Console.ReadLine()); // Spør etter et svar og lagrer det i deklarert variable.
+            if (answer != "test") // Så lenge ikke svaret er dette ^
             {
-                program.pricesToday();
+                program.pricesToday();      // Starter metode pricesToday();
                 Console.WriteLine("======");
-                program.findTodaysTops();
+                program.findTodaysTops();   // Starter metode findTodaysTops();
                 Console.WriteLine("======");
-                program.insertThreshold();
+                program.insertThreshold();  // Starter metode insertThreshold();
                 Console.WriteLine("======");
-                program.turnOff();                
+                program.turnOff();          // Starter metode turnOff();
                 Console.WriteLine("======");
             }
         }
 
         int makeID()
         {
-            int ID = 0;
-            string writtenID = "";
-            for (int i = 0; i < 6; i++)
+            int ID = 0; // Deklarerer variabel.
+            string writtenID = ""; // Deklarerer variabel.
+            for (int i = 0; i < 6; i++) // Så lenge antall kjøringer er mindre enn 6 som er ønsket tallmengde. Så kjører denne koden.
             {
-                writtenID = writtenID + Convert.ToString(random.Next(0, 9));
+                writtenID = writtenID + Convert.ToString(random.Next(1, 9)); // Legger ID tall inn i writtenID
             }
 
-            ID = Convert.ToInt32(writtenID);
-            return ID;
+            ID = Convert.ToInt32(writtenID); // Gjør iden om tilbake til en int.
+            return ID; // Returnerer ID.
         }
 
         void insertThreshold()
         {
-            Console.WriteLine("Do you want to add a new item? (n for no)");
+            Console.WriteLine("Do you want to add a new item? (n for no)"); // Spørsmål.
             Console.WriteLine("==============================");
-            string answer = Convert.ToString(Console.ReadLine());                            
+            string answer = Convert.ToString(Console.ReadLine()); // Spør om et svar, og lagrer dette i deklarert variabel.
 
             if (answer != "n")
             {
